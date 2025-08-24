@@ -8,12 +8,14 @@ board.addEventListener("click",(e)=>{
       let x=parseInt(idxStr[1]);
       let y=parseInt(idxStr[2]);
       if(bool){
-         img.setAttribute("src","media/cross-svgrepo-com.svg");
-         validation(x,y,"X");
-         bool=false;
-      }else{
          img.setAttribute("src","media/circle-svgrepo-com.svg");
          validation(x,y,"O");
+         bool=false;
+      }else{
+         img.setAttribute("src","media/cross-svgrepo-com.svg");
+         if(validation(x,y,"X")){
+            announceWinner("X");
+         }
          bool=true;
       }
       block.appendChild(img);
@@ -37,14 +39,15 @@ restartButton.addEventListener("click",()=>{
 });
 
 //Validation code
-let matrix=[3][3];
+let matrix=[];
 newMatrix();
 let counter=0;
 let extreme=[0,2];
 function newMatrix(){
    for(let i=0;i<3;i++){
+      matrix[i]=[];
       for(let j=0;j<3;j++){
-         matrix[i][j]="-"
+         matrix[i][j]="-";
       }
    }
 }
@@ -92,10 +95,20 @@ function horizontalVerification(x,y){
    return false;
 }
 function diagonalVerification(x,y){
-   if(matrix[x][y]!=matrix[1][1] || matrix[x][y]!=matrix[2-x][2-j]){
+   if(matrix[x][y]!=matrix[1][1] || matrix[x][y]!=matrix[2-x][2-y]){
       return false;
    }
    return true;
+}
+
+//to find winner
+function announceWinner(symbol){
+   if(symbol=="O"){
+      
+   }
+   else{
+
+   }
 }
 
 
