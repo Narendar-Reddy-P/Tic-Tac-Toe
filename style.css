@@ -107,10 +107,10 @@ img{
    font-size: 2rem;
 }
 .blueScore{
-   color:var(--red-team);
+   color:var(--blue-team);
 }
 .redScore{
-   color:var(--blue-team);
+   color:var(--red-team);
 }
 
 dialog{
