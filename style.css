@@ -1,0 +1,126 @@
+
+body{
+   --red-team:#ec514a;
+   --blue-team:#3a8fe4;
+   margin:0;
+   padding:0;
+   display: flex;
+   justify-content: center;
+}
+[data-theme="blue"]{
+   --bg-color:var(--red-team);
+   --bg-opposite-color:var(--blue-team);
+}
+[data-theme="red"]{
+   --bg-color:var(--blue-team);
+   --bg-opposite-color:var(--red-team);
+}
+.container{
+   height: 100vh;
+   flex:0 0 50vw;
+   background-color: var(--bg-color);
+}
+.subContainer1{
+   height: 20vh;
+   background-color: var(--bg-color);
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+.player{
+   display: flex;
+   background-color: white;
+   border-radius: 5px;
+   font-size: 2rem;
+   align-items: center;
+   gap:1rem;
+   padding:5px;
+   padding-right:2rem;
+}
+img{
+   height: 3rem;
+   width: 3rem; 
+}
+#bluePic{
+   background-color: var(--blue-team);
+}
+#redPic{
+   background-color: var(--red-team);
+}
+.restartButton{
+   font-size: 2rem;
+   background-color: white;
+   border-radius: 5px;
+   border-collapse: collapse;
+   padding: 10px;
+   border-color: var(--bg-color);
+   border-style: none;
+}
+.subContainer2{
+   height: 60vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.board{
+   display:grid;
+   grid-template:repeat(3,8rem)/repeat(3,8rem);
+   gap:1rem;
+   background-color: black;
+   padding:0;
+   margin:0;
+}
+.block{
+   height: 8rem;
+   width: 8rem;
+   background-color: var(--bg-color);
+}
+.subContainer3{
+   height: 20vh;
+   background-color: var(--bg-color);
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+.scoreBoard{
+   font-size: 2rem;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   padding:10px;
+   gap:10px;
+   border-radius: 5px;
+
+}
+
+.scoreHead{
+   text-decoration: underline;
+
+}
+.score{
+   display: flex;
+   justify-content: space-evenly;
+}
+.blueScore,.redScore{
+   font-size: 2rem;
+}
+.blueScore{
+   color:var(--red-team);
+}
+.redScore{
+   color:var(--blue-team);
+}
+
+dialog{
+   height: 20vh;
+   width: 50vw;
+   align-self: center;
+   justify-self:center;
+   background-color: var(--bg-color);
+   padding:0;
+   margin:0;
+   border-collapse: collapse;
+}
+dialog::backdrop{
+
+}
