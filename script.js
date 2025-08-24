@@ -4,7 +4,7 @@ board.addEventListener("click",(e)=>{
    let block=e.target;
    if(block.getAttribute("id")==""){
       let img=document.createElement("img");
-      let idxStr=block.classList[2];
+      let idxStr=block.classList[1];
       let x=parseInt(idxStr[1]);
       let y=parseInt(idxStr[2]);
       if(bool){
@@ -23,6 +23,8 @@ board.addEventListener("click",(e)=>{
    }
 });
 
+
+//Restart Button Code
 let restartButton=document.querySelector(".restartButton");
 restartButton.addEventListener("click",()=>{
    let blocks=document.querySelectorAll(".block");
@@ -30,11 +32,13 @@ restartButton.addEventListener("click",()=>{
       block.setAttribute("id","");
       block.firstChild?.remove();
       newMatrix();
+      counter=0;
    });
 });
 
 //Validation code
 let matrix=[3][3];
+newMatrix();
 let counter=0;
 let extreme=[0,2];
 function newMatrix(){
@@ -71,14 +75,27 @@ function validation(x,y,symbol){
    }
    return false;
 }
-function verticalVerification(i,j){
-   for()
+function verticalVerification(x,y){
+   for(let i=0;i<3;i++){
+      if(matrix[i][y]!=matrix[x][y]){
+         return false;
+      }
+   }
+   return true;
 }
-function horizontalVerification(i,j){
-
+function horizontalVerification(x,y){
+   for(let i=0;i<3;i++){
+      if(matrix[x][i]!=matrix[x][y]){
+         return false;
+      }
+   }
+   return false;
 }
-function diagonalVerification(i,j){
-
+function diagonalVerification(x,y){
+   if(matrix[x][y]!=matrix[1][1] || matrix[x][y]!=matrix[2-x][2-j]){
+      return false;
+   }
+   return true;
 }
 
 
