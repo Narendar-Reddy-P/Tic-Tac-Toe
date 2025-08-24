@@ -9,7 +9,9 @@ board.addEventListener("click",(e)=>{
       let y=parseInt(idxStr[2]);
       if(bool){
          img.setAttribute("src","media/circle-svgrepo-com.svg");
-         validation(x,y,"O");
+         if(validation(x,y,"O")){
+            announceWinner("O");
+         }
          bool=false;
       }else{
          img.setAttribute("src","media/cross-svgrepo-com.svg");
@@ -35,6 +37,10 @@ restartButton.addEventListener("click",()=>{
       block.firstChild?.remove();
       newMatrix();
       counter=0;
+      blueScore=0;
+      redScore=0;
+      blueScoreBoard.textContent="0";
+      redScoreBoard.textContent="0";
    });
 });
 
@@ -54,12 +60,12 @@ function newMatrix(){
 function validation(x,y,symbol){
    matrix[x][y]=symbol;
    counter++;
-   if(counter>5){
-      if((x in extreme)&& (y in extreme)){
+   if(counter>=5){
+      if((extreme.includes(x))&& (extreme.includes(y))){
          if(verticalVerification(x,y)||horizontalVerification(x,y)||diagonalVerification(x,y)){
             return true;
          }
-      }else if((x in extreme)||(y in extreme)){
+      }else if((extreme.includes(x))||(extreme.includes(y))){
          if(verticalVerification(x,y)||horizontalVerification(x,y)){
             return true;
          }
@@ -92,7 +98,7 @@ function horizontalVerification(x,y){
          return false;
       }
    }
-   return false;
+   return true;
 }
 function diagonalVerification(x,y){
    if(matrix[x][y]!=matrix[1][1] || matrix[x][y]!=matrix[2-x][2-y]){
@@ -101,15 +107,27 @@ function diagonalVerification(x,y){
    return true;
 }
 
-//to find winner
+//to announce winner
+let modal=document.querySelector("dialog");
+let blueScoreBoard=document.querySelector(".blueScore");
+let redScoreBoard=document.querySelector(".redScore");
+let blueScore=0;
+let redScore=0;
 function announceWinner(symbol){
    if(symbol=="O"){
-      
+      modal.textContent="Blue Won";
+      blueScoreBoard.textContent=String(++blueScore);
    }
    else{
-
+      modal.textContent="Red Won";
+      redScoreBoard.textContent=String(++redScore);
    }
+   modal.showModal();
 }
+//close dialog code
+modal.addEventListener("click",()=>{
+   modal.close();
+});
 
 
 
